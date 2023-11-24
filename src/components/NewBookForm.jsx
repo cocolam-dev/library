@@ -44,15 +44,16 @@ const NewBookForm = () => {
     <>
       <h3>New Book Form</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="formField">
+        <div>
           <input
             type="text"
             placeholder="Book title..."
+            className={errors.bookTitle ? "InputError" : ""}
             {...register("bookTitle")}
           />
           <p className="errorMessage">{errors.bookTitle?.message}</p>
         </div>
-        <div className="formField">
+        <div>
           <input type="text" placeholder="Author..." {...register("author")} />
           <p className="errorMessage">{errors.author?.message}</p>
         </div>

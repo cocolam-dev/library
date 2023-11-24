@@ -6,7 +6,7 @@ import BookTable from "./components/BookTable";
 function App() {
   return (
     <>
-      <h1>Chloe's Library</h1>
+      <h1>My Library</h1>
       <NewBookForm />
       <BookTable />
     </>

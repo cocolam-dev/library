@@ -43,10 +43,12 @@ function createData(id, bookTitle, author, status) {
 //   createData(4, books[4].bookTitle, books[4].Author, books[4].Status),
 
 function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
+  const aUpper = a[orderBy].toUpperCase();
+  const bUpper = b[orderBy].toUpperCase();
+  if (bUpper < aUpper) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (bUpper > aUpper) {
     return 1;
   }
   return 0;
@@ -78,7 +80,7 @@ const headCells = [
   {
     id: "bookTitle",
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: "Book Title",
   },
   {
@@ -239,7 +241,7 @@ export default function BookTable() {
   }
 
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
+  const [orderBy, setOrderBy] = React.useState("bookTitle");
   //   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -337,6 +339,11 @@ export default function BookTable() {
     [order, orderBy, page, rowsPerPage, rows]
   );
 
+  //   const visibleRows = stableSort(rows, getComparator(order, orderBy)).slice(
+  //     page * rowsPerPage,
+  //     page * rowsPerPage + rowsPerPage
+  //   );
+
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
@@ -384,7 +391,7 @@ export default function BookTable() {
                       component="th"
                       id={labelId}
                       scope="row"
-                      padding="none"
+                      padding-left="1.5rem"
                     >
                       {row.bookTitle}
                     </TableCell>
