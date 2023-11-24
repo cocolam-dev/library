@@ -8,8 +8,8 @@ const NewBookForm = () => {
   const { selected, setSelected, bookList, setBookList } = useGlobalContext();
 
   const schema = yup.object().shape({
-    bookTitle: yup.string().required("Book title is required"),
-    author: yup.string().required("Author name is required"),
+    bookTitle: yup.string().trim().required("Book title is required"),
+    author: yup.string().trim().required("Author name is required"),
   });
 
   const {
@@ -25,8 +25,8 @@ const NewBookForm = () => {
     const newBookId = bookList.length + 1;
     const newBook = {
       id: newBookId,
-      bookTitle: data.bookTitle,
-      author: data.author,
+      bookTitle: data.bookTitle.trim(),
+      author: data.author.trim(),
       status: "Available",
     };
     const newBookList = [...bookList, newBook];
